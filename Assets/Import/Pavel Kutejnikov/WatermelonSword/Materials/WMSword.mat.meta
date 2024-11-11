@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-guid: e134861261e1f204ea95fae0275a545b
+guid: d17aaa44c0769104a8d61cc4d672cc93
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 2100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 191078
-  packageName: Watermelon Sword
-  packageVersion: 1.0
-  assetPath: Assets/Pavel Kutejnikov/WatermelonSword/Materials/WMSword.mat
-  uploadId: 421928
