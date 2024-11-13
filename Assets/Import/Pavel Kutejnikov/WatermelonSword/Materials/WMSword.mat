@@ -107,7 +107,11 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+<<<<<<< HEAD
     - _Smoothness: 0.117
+=======
+    - _Smoothness: 0.5
+>>>>>>> b0b1a89db0dfaf075756a7a36f989fa7ee1a74e0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -123,7 +127,11 @@ Material:
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
+<<<<<<< HEAD
 --- !u!114 &2917228780100725105
+=======
+--- !u!114 &9075579376694828590
+>>>>>>> b0b1a89db0dfaf075756a7a36f989fa7ee1a74e0
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
