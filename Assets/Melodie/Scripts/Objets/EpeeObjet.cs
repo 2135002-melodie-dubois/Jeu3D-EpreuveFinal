@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EpeeObjet", menuName = "Une Eppee")]
+[CreateAssetMenu(fileName = "EpeeObjet", menuName = "Eppee")]
 public class EpeeObjet : ScriptableObject
 {
     [SerializeField]
