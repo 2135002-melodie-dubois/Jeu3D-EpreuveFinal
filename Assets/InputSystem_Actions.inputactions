@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Rotater",
+                    "type": "Value",
+                    "id": "17407893-d9cb-41ab-af76-5a90d7dd3d43",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -289,7 +298,7 @@
                 {
                     "name": "left",
                     "id": "54f5325d-38ad-4b65-afdc-27d8ec8b9753",
-                    "path": "<Keyboard>/q",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -300,7 +309,7 @@
                 {
                     "name": "right",
                     "id": "cb96008e-f4db-4f99-af4e-e16527604c54",
-                    "path": "<Keyboard>/e",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -527,6 +536,39 @@
                     "action": "Crouch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "f1ad8350-e57f-48c8-846b-c7c8296dca57",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotater",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "69dc82b1-ad1a-416c-bf35-35f890e38a88",
+                    "path": "<Mouse>/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotater",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "7954800d-3691-4c5a-ac93-2dddb7ed8aa2",
+                    "path": "<Mouse>/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotater",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
