@@ -8,34 +8,38 @@ public class DeplacerCanard : MonoBehaviour
 
     PlayerInput playerInput;
     InputAction moveAction;
-    private new Rigidbody rb;
+    InputAction rotateAction;
+    private Rigidbody rb;
 
     public float vitesse;
     public float vitesseRotation;
-    private float rotation;
+    private float rotate;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+        rotateAction = playerInput.actions.FindAction("Rotater");
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         Deplacer();
+        Rotater();
     }
 
     void Deplacer()
     {
         Vector2 direction = moveAction.ReadValue<Vector2>();
-        transform.position += new Vector3(direction.x, 0, direction.y) * vitesse * Time.deltaTime;
+        transform.position += transform.rotation * new Vector3(direction.x, 0, direction.y) * vitesse * Time.deltaTime;
     }
 
     void Rotater()
     {
-        rotation = 
-        rb.rotation = rb.rotation * Quaternion.AngleAxis(rotation * vitesseRotation * Time.deltaTime * Vector3.up);
+        float rotate = rotateAction.ReadValue<float>();
+        rb.rotation = rb.rotation * Quaternion.AngleAxis(rotate * vitesseRotation * Time.deltaTime, Vector3.up);
     }
 }

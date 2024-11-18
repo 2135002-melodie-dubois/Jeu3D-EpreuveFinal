@@ -15,6 +15,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Rotater",
+                    "type": "Value",
+                    "id": "17407893-d9cb-41ab-af76-5a90d7dd3d43",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Look",
                     "type": "Value",
                     "id": "6b444451-8a00-4d00-a97e-f47457f736a8",
@@ -298,7 +307,7 @@
                 {
                     "name": "left",
                     "id": "54f5325d-38ad-4b65-afdc-27d8ec8b9753",
-                    "path": "<Keyboard>/q",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -309,7 +318,7 @@
                 {
                     "name": "right",
                     "id": "cb96008e-f4db-4f99-af4e-e16527604c54",
-                    "path": "<Keyboard>/e",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -538,6 +547,7 @@
                     "isPartOfComposite": false
                 },
                 {
+<<<<<<< HEAD
                     "name": "",
                     "id": "91109d1f-d147-4da4-b376-9a3ea99d2911",
                     "path": "",
@@ -551,33 +561,58 @@
                 {
                     "name": "1D Axis",
                     "id": "1fdb2e70-261d-4b85-b63b-9285ef9e8631",
+=======
+                    "name": "1D Axis",
+                    "id": "f1ad8350-e57f-48c8-846b-c7c8296dca57",
+>>>>>>> 58e8fa7293c9b89642afa84076f98be74e865714
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+<<<<<<< HEAD
                     "action": "New action",
+=======
+                    "action": "Rotater",
+>>>>>>> 58e8fa7293c9b89642afa84076f98be74e865714
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "negative",
+<<<<<<< HEAD
                     "id": "ddb8ccc5-c809-4683-888f-718fbad0d543",
                     "path": "<Mouse>/delta/left",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "New action",
+=======
+                    "id": "69dc82b1-ad1a-416c-bf35-35f890e38a88",
+                    "path": "<Mouse>/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotater",
+>>>>>>> 58e8fa7293c9b89642afa84076f98be74e865714
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
+<<<<<<< HEAD
                     "id": "199c9c35-416e-4380-90c4-402f21960715",
+=======
+                    "id": "7954800d-3691-4c5a-ac93-2dddb7ed8aa2",
+>>>>>>> 58e8fa7293c9b89642afa84076f98be74e865714
                     "path": "<Mouse>/delta/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+<<<<<<< HEAD
                     "action": "New action",
+=======
+                    "action": "Rotater",
+>>>>>>> 58e8fa7293c9b89642afa84076f98be74e865714
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
