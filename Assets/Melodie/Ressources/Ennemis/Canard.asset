@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Canard
   m_EditorClassIdentifier: 
   vitesse: 5
+  points: 1

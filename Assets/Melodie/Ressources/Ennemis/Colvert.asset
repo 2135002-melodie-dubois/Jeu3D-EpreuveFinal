@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Colvert
   m_EditorClassIdentifier: 
   vitesse: 7
+  points: 2

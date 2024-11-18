@@ -4,13 +4,14 @@ using UnityEngine;
 public class EpeeObjet : ScriptableObject
 {
     [SerializeField]
-    private int degats;
-
-    [SerializeField]
     private int valeur;
 
     [SerializeField]
     private Material texture;
+
+    [SerializeField]
+    private int multiplicateur;
+
 
     private void Attaquer()
     {

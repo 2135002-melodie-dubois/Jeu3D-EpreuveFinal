@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf067ec5d3e21e4caca8f1ca6ea1a41, type: 3}
   m_Name: EppeeNiveau1
   m_EditorClassIdentifier: 
-  degats: 5
   valeur: 0
-  texture: {fileID: 2100000, guid: e134861261e1f204ea95fae0275a545b, type: 2}
+  texture: {fileID: 2100000, guid: 73c7b020619cc464190b52bf4fea4582, type: 2}
+  multiplicateur: 1
