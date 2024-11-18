@@ -5,5 +5,8 @@ public class EnnemiObjet : ScriptableObject
 {
     [SerializeField]
     public float vitesse;
+
+    [SerializeField]
+    public int points;
     
 }

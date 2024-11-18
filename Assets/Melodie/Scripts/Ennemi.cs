@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class Ennemi : MonoBehaviour
 {
@@ -18,5 +19,10 @@ public class Ennemi : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnTaper()
+    {
+        //donner type_ennemi.points points
     }
 }

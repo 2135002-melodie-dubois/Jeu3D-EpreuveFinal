@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Bateau
   m_EditorClassIdentifier: 
   vitesse: 2
+  points: 5
