@@ -269,8 +269,8 @@ GameObject:
   - component: {fileID: 8313748741407605620}
   - component: {fileID: 5261711953804427787}
   - component: {fileID: 2094775077626542624}
-  - component: {fileID: 8438817980901580085}
   - component: {fileID: 6897439539484392442}
+  - component: {fileID: 1885795780860736554}
   m_Layer: 0
   m_Name: BateauAvecCollisions
   m_TagString: Ennemi
@@ -363,19 +363,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &8438817980901580085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413884464879433871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 685fcc0638bb2d64d989117712afbf7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type_Ennemi: {fileID: 11400000, guid: 2ac2b2ab3ef3e2c458332add8bb36594, type: 2}
 --- !u!195 &6897439539484392442
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -398,6 +385,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1885795780860736554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413884464879433871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685fcc0638bb2d64d989117712afbf7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type_Ennemi: {fileID: 11400000, guid: 2ac2b2ab3ef3e2c458332add8bb36594, type: 2}
 --- !u!1 &2983305435024040863
 GameObject:
   m_ObjectHideFlags: 0
