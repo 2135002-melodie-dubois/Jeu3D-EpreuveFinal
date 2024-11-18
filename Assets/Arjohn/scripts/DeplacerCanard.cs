@@ -25,18 +25,24 @@ public class DeplacerCanard : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         Deplacer();
         Rotater();
     }
 
+    /// <summary>
+    /// fonction pour deplacer le canard
+    /// </summary>
     void Deplacer()
     {
         Vector2 direction = moveAction.ReadValue<Vector2>();
         transform.position += transform.rotation * new Vector3(direction.x, 0, direction.y) * vitesse * Time.deltaTime;
     }
 
+    /// <summary>
+    /// fonction pour rotater le canard
+    /// </summary>
     void Rotater()
     {
         float rotate = rotateAction.ReadValue<float>();
