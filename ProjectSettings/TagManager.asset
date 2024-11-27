@@ -5,7 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ennemi
+<<<<<<< HEAD
+  - PlayerObj
+  - Sol
+=======
   - Eppee
+>>>>>>> fceefe35f770af60e4248e064b1bd7f534332bbc
   layers:
   - Default
   - TransparentFX
