@@ -11,11 +11,5 @@ public class EpeeObjet : ScriptableObject
 
     [SerializeField]
     private int multiplicateur;
-
-
-    private void Attaquer()
-    {
-        //ATTAQUE
-    }
     
 }

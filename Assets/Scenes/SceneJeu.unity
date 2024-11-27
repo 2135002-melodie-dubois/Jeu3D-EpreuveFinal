@@ -1152,7 +1152,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 264522854}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705609737}
+        m_TargetAssemblyTypeName: Menus, Assembly-CSharp
+        m_MethodName: AcheterVie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &264522854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,8 +2935,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuBoutique: {fileID: 1680044273}
+  menuMissions: {fileID: 1821429029}
   AmeliorationVieMax: 5
   TypeEppeeAmelioree: {fileID: 11400000, guid: 151f6a0b2de85124ebcf0ef9058901be, type: 2}
+  ui_score: {fileID: 244629900}
+  ui_meilleur_score: {fileID: 791021192}
+  ui_compteur_pieces: {fileID: 240723082}
 --- !u!1 &724222377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6198,7 +6214,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1244642558}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705609737}
+        m_TargetAssemblyTypeName: Menus, Assembly-CSharp
+        m_MethodName: AcheterEppee
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1244642558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6694,7 +6722,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1515598351}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705609737}
+        m_TargetAssemblyTypeName: Menus, Assembly-CSharp
+        m_MethodName: OuvrirMenuMissions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1515598351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7492,7 +7532,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1677095357}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705609737}
+        m_TargetAssemblyTypeName: Menus, Assembly-CSharp
+        m_MethodName: FermerMenuMissions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1677095357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7579,9 +7631,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680044268}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &1680044271
 MonoBehaviour:
@@ -8018,6 +8070,7 @@ GameObject:
   - component: {fileID: 1821429028}
   - component: {fileID: 1821429027}
   - component: {fileID: 1821429026}
+  - component: {fileID: 1821429029}
   m_Layer: 5
   m_Name: MenuMissions
   m_TagString: Untagged
@@ -8095,6 +8148,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1821429024}
   m_CullTransparentMesh: 1
+--- !u!114 &1821429029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821429024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23d1c76ab00b4f44db5118b3d1074833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1842676704
 GameObject:
   m_ObjectHideFlags: 0
