@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ennemi
+  - Eppee
   layers:
   - Default
   - TransparentFX
