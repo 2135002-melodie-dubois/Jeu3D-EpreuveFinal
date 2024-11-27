@@ -1,6 +1,8 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Menus : MonoBehaviour
 {
@@ -66,6 +68,11 @@ public class Menus : MonoBehaviour
     public void UpdatePieces()
     {
         ui_compteur_pieces.text = pieces.ToString();
+    }
+
+    public void DemmarerPartie()
+    {
+        //Lancer un message: Demarer Partie
     }
 
     //Fonctions Du Menu Boutique
