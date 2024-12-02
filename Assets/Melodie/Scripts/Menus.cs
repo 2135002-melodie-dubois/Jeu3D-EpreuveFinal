@@ -31,7 +31,14 @@ public class Menus : MonoBehaviour
     private TextMeshProUGUI ui_meilleur_score;
     [SerializeField]
     private TextMeshProUGUI ui_compteur_pieces;
-    
+
+    //Valeurs menu missions
+    [SerializeField]
+    private Mission[] missions;
+    [SerializeField]
+    private TextMeshProUGUI[] ui_texte_missions;
+
+
 
     private void Start()
     {
@@ -117,6 +124,10 @@ public class Menus : MonoBehaviour
     public void OuvrirMenuMissions()
     {
         menuMissions.OuvrirMenu();
+        for (int i = 0; i < ui_texte_missions.Length; i++)
+        {
+            ui_texte_missions[i].text = missions[i].TexteMission();
+        }
     }
 
     public void FermerMenuMissions()
@@ -124,8 +135,13 @@ public class Menus : MonoBehaviour
         menuMissions.FermerMenu();
     }
 
-    public void ExecuterMission()
+    public void ExecuterMission(int position)
     {
-
+        Mission misson = missions[position];
+        if (misson.EstComplete())
+        {
+            pieces += misson.GetRecompense();
+            misson.InstancierMission();
+        }
     }
 }
