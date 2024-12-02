@@ -11,17 +11,24 @@ public class CanardChaseState : CanardBaseState
 
     }
 
-    public override void UpdateState(CanardGererState canard)
+    public override CanardBaseState UpdateState(CanardGererState canard)
     {
         canard.GoChase();
 
+        // si l'ennemi est assez proche, il va attaquer le canard.
+        // si l'ennemi est assez loin, il va rester inactif.
+        // sinon, continue de chasser le canard
         if (canard.IsAttaque() == true)
         {
-            canard.SwitchState(canard.AttackState);
+            return new CanardAttackState();
         }
         else if (canard.IsIdle() == true)
         {
-            canard.SwitchState(canard.IdleState);
+            return new CanardIdleState();
+        }
+        else
+        {
+            return this;
         }
     }
 

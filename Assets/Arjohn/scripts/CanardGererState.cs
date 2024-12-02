@@ -8,12 +8,9 @@ public class CanardGererState : MonoBehaviour
     // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_
 
     CanardBaseState currentState;
-    public CanardIdleState IdleState = new CanardIdleState();
-    public CanardAttackState AttackState = new CanardAttackState();
-    public CanardChaseState ChaseState = new CanardChaseState();
 
-    public NavMeshAgent agent;
-    public Transform player;
+    private NavMeshAgent agent;
+    private Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
     // IDLE
@@ -31,7 +28,7 @@ public class CanardGererState : MonoBehaviour
 
     void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Joueur").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -39,7 +36,7 @@ public class CanardGererState : MonoBehaviour
     void Start()
     {
         // state debutant pour la machine a etat
-        currentState = IdleState;
+        currentState = new CanardIdleState();
         // "this" est une reference de la contexte (cet exact MonoBehavior script)
         currentState.EnterState(this);
     }
@@ -59,6 +56,7 @@ public class CanardGererState : MonoBehaviour
 
     public void GoIdle()
     {
+        Debug.Log("going idle!");
         if (!walkPointSet)
         {
             SearchWalkPoint();
@@ -80,16 +78,6 @@ public class CanardGererState : MonoBehaviour
     public void GoChase()
     {
         agent.SetDestination(player.position);
-    }
-
-    /// <summary>
-    /// changer state
-    /// </summary>
-    /// <param name="state">state de l'ennemi(IDLE, CHASE, ATTAQUE)</param>
-    public void SwitchState(CanardBaseState state)
-    {
-        currentState = state;
-        state.EnterState(this);
     }
 
     public void SearchWalkPoint()

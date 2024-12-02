@@ -11,9 +11,21 @@ public class CanardAttackState : CanardBaseState
 
     }
 
-    public override void UpdateState(CanardGererState canard)
+    public override CanardBaseState UpdateState(CanardGererState canard)
     {
-        canard.GoChase();
+        // fonction n'existe pas encore
+        // canard.GoAttack();
+
+        // si l'ennemi n'est pas assez proche, il va chasser le canard.
+        // sinon, repeter AttackState
+        if (canard.IsChase() == true)
+        {
+            return new CanardChaseState();
+        }
+        else
+        {
+            return this;
+        }
     }
 
     public override void OnCollisionEnter(CanardGererState canard)
