@@ -11,12 +11,12 @@ public class CanardGererState : MonoBehaviour
 
     private NavMeshAgent agent;
     private Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsWater, whatIsPlayer;
 
     // IDLE
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange;
+    public float walkPointRange = 2;
 
     // ATTAQUER
     public float timeBetweenAttacks;
@@ -54,27 +54,35 @@ public class CanardGererState : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// l'ennemi entre dans un state Idle
+    /// </summary>
     public void GoIdle()
     {
-        Debug.Log("going idle!");
         if (!walkPointSet)
         {
             SearchWalkPoint();
         }
         else if (walkPointSet)
         {
-            agent.SetDestination(walkPoint);
-        }
+            Debug.Log("going idle!");
+            //agent.SetDestination(walkPoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+            Debug.Log(agent.SetDestination(walkPoint));
 
-        // si l'ennemi est dans sa destination
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            // si l'ennemi est dans sa destination
+            if (distanceToWalkPoint.magnitude == 0f || Mathf.Approximately(agent.velocity.sqrMagnitude, 0.0f))
+            {
+                walkPointSet = false;
+            }
         }
     }
 
+    /// <summary>
+    /// l'ennemi entre dans un state Chase
+    /// </summary>
     public void GoChase()
     {
         agent.SetDestination(player.position);
@@ -87,7 +95,7 @@ public class CanardGererState : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsWater))
         {
             walkPointSet = true;
         }
