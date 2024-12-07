@@ -20,12 +20,10 @@ public class CanardIdleState : CanardBaseState
         // sinon, rester inactif
         if (canard.IsChase() == true)
         {
+            //Debug.Log("suppose de chase");
             return new CanardChaseState();
         } 
-        else
-        {
-            return this;
-        }
+        return this;
     }
 
     public override void OnCollisionEnter(CanardGererState canard)

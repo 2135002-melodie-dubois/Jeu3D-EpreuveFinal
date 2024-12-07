@@ -6,12 +6,14 @@ public class CanardGererState : MonoBehaviour
     // REFERENCES :
     // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl
     // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_
+    // https://youtu.be/zNdGUUOohzE?si=2gZ30PdsSnO-n8Vl
 
-    CanardBaseState currentState;
+    public CanardBaseState currentState;
 
     private NavMeshAgent agent;
     private Transform player;
     public LayerMask whatIsWater, whatIsPlayer;
+    public float distance;
 
     // IDLE
     public Vector3 walkPoint;
@@ -24,7 +26,7 @@ public class CanardGererState : MonoBehaviour
 
     // STATES
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    private bool playerInSightRange, playerInAttackRange;
 
     void Awake()
     {
@@ -47,10 +49,15 @@ public class CanardGererState : MonoBehaviour
         // il va caller tous les logiques dans les fonctions Update() dans le state actuel
         currentState.UpdateState(this);
 
+
         // chequer si le joueur est dans le vue de l'ennemi
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //Debug.Log(playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer));
+        distance = Vector3.Distance(agent.transform.position, player.transform.position);
+        //Debug.Log(currentState);
+        
         // chequer si le joueur est assez proche pour l'attaquer
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
     }
 
@@ -65,15 +72,14 @@ public class CanardGererState : MonoBehaviour
         }
         else if (walkPointSet)
         {
-            Debug.Log("going idle!");
-            //agent.SetDestination(walkPoint);
+            agent.SetDestination(walkPoint);
 
-            Debug.Log(agent.SetDestination(walkPoint));
+            //Debug.Log(agent.SetDestination(walkPoint));
 
             Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
             // si l'ennemi est dans sa destination
-            if (distanceToWalkPoint.magnitude == 0f || Mathf.Approximately(agent.velocity.sqrMagnitude, 0.0f))
+            if (distanceToWalkPoint.magnitude < 0.5f || Mathf.Approximately(agent.velocity.sqrMagnitude, 0.0f))
             {
                 walkPointSet = false;
             }
@@ -85,7 +91,9 @@ public class CanardGererState : MonoBehaviour
     /// </summary>
     public void GoChase()
     {
-        agent.SetDestination(player.position);
+        Debug.Log("je te chasse!");
+        agent.SetDestination(player.transform.position);
+        //   Debug.Log(agent.SetDestination(player.transform.position));
     }
 
     public void SearchWalkPoint()
@@ -123,7 +131,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsChase()
     {
-        if (playerInSightRange && !playerInAttackRange)
+        //if (playerInSightRange && !playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance < 0.75f)
         {
             return true;
         }
