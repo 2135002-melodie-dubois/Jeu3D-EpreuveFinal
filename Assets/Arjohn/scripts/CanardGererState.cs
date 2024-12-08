@@ -1,14 +1,16 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CanardGererState : MonoBehaviour
 {
     // REFERENCES :
-    // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl
-    // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_
-    // https://youtu.be/zNdGUUOohzE?si=2gZ30PdsSnO-n8Vl
+    // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl (How to Program in Unity: State Machines Explained)
+    // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_ (FULL 3D ENEMY AI in 6 MINUTES! || Unity Tutorial)
+    // https://youtu.be/zNdGUUOohzE?si=2gZ30PdsSnO-n8Vl (Create a Simple Enemy AI in Unity: Player Detection and Chasing)
 
     public CanardBaseState currentState;
+    public Joueur joueur;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -26,7 +28,7 @@ public class CanardGererState : MonoBehaviour
 
     // STATES
     public float sightRange, attackRange;
-    private bool playerInSightRange, playerInAttackRange;
+    //private bool playerInSightRange, playerInAttackRange;
 
     void Awake()
     {
@@ -51,14 +53,28 @@ public class CanardGererState : MonoBehaviour
 
 
         // chequer si le joueur est dans le vue de l'ennemi
+        distance = Vector3.Distance(agent.transform.position, player.transform.position);
         //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         //Debug.Log(playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer));
-        distance = Vector3.Distance(agent.transform.position, player.transform.position);
         //Debug.Log(currentState);
-        
+
         // chequer si le joueur est assez proche pour l'attaquer
         //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+    }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Player")
+        {
+            Debug.Log("l'ennemi a touche/attaque le joueur");
+            StartCoroutine(PerdVie());
+        }
+    }
+
+    private IEnumerator PerdVie()
+    {
+        joueur.RetirerVie();
+        yield return new WaitForSeconds(3f);
     }
 
     /// <summary>
@@ -96,6 +112,22 @@ public class CanardGererState : MonoBehaviour
         //   Debug.Log(agent.SetDestination(player.transform.position));
     }
 
+    /// <summary>
+    /// l'ennemi entre dans un state Attaque
+    /// </summary>
+    public void GoAttack()
+    {
+        Debug.Log("je t'attaque!");
+        agent.SetDestination(player.transform.position);
+        // changer vitesse pour chasser le joueur plus vite, donne l'air comme un "dash".
+        // aussi attaquer dans un position de joueur qui etait la et non le position actuelle du joueur
+
+        //   Debug.Log(agent.SetDestination(player.transform.position));
+    }
+
+    /// <summary>
+    /// l'ennemi cherche un point aleatoire dans le bain
+    /// </summary>
     public void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -115,7 +147,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsIdle()
     {
-        if (!playerInSightRange && !playerInAttackRange)
+        //if (!playerInSightRange && !playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance > 1.25f)
         {
             return true;
         }
@@ -139,7 +179,7 @@ public class CanardGererState : MonoBehaviour
         //{
         //    return false;
         //}
-        if (distance < 0.75f)
+        if (distance < 1.25f)
         {
             return true;
         }
@@ -155,7 +195,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsAttaque()
     {
-        if (playerInSightRange && playerInAttackRange)
+        //if (playerInSightRange && playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance < 0.5f)
         {
             return true;
         }

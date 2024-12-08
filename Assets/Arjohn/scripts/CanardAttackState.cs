@@ -13,7 +13,7 @@ public class CanardAttackState : CanardBaseState
 
     public override CanardBaseState UpdateState(CanardGererState canard)
     {
-        // fonction n'existe pas encore
+        // fonction ne marche pas encore
         // canard.GoAttack();
 
         // si l'ennemi n'est pas assez proche, il va chasser le canard.

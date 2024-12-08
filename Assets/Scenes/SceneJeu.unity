@@ -330,6 +330,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43540552}
   m_CullTransparentMesh: 1
+--- !u!1 &49164832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5917978583770865241, guid: 3c1d1e1264049eb4a9a6a2c5efdd8de6, type: 3}
+  m_PrefabInstance: {fileID: 3376151448101125914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &49164836
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49164832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6286489870328746816, guid: 651d77a525480c84e9327ec0894c0da1, type: 3}
 --- !u!1 &59905719
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,7 +2826,6 @@ GameObject:
   m_Component:
   - component: {fileID: 614947600}
   - component: {fileID: 614947602}
-  - component: {fileID: 614947601}
   m_Layer: 0
   m_Name: CanardMauve
   m_TagString: Untagged
@@ -2823,29 +2849,6 @@ Transform:
   - {fileID: 596535721}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &614947601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614947599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33e2bc8748243439506fec71e7dd30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsWater:
-    serializedVersion: 2
-    m_Bits: 16
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 2.5
-  timeBetweenAttacks: 0
-  sightRange: 0
-  attackRange: 0
 --- !u!195 &614947602
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2878,7 +2881,6 @@ GameObject:
   m_Component:
   - component: {fileID: 652149095}
   - component: {fileID: 652149097}
-  - component: {fileID: 652149096}
   m_Layer: 0
   m_Name: CanardVert
   m_TagString: Untagged
@@ -2902,29 +2904,6 @@ Transform:
   - {fileID: 1728179981}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &652149096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 652149094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d33e2bc8748243439506fec71e7dd30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  whatIsWater:
-    serializedVersion: 2
-    m_Bits: 16
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 2.5
-  timeBetweenAttacks: 0
-  sightRange: 0
-  attackRange: 0
 --- !u!195 &652149097
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5552,11 +5531,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5261711953804427787, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_Speed
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_Enabled
@@ -5564,11 +5543,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_Acceleration
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_AngularSpeed
-      value: 720
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_WalkableMask
@@ -5649,6 +5628,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
+  distance: 0
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 2.5
   timeBetweenAttacks: 0
@@ -7063,7 +7043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d503e32cfd1cef4391dd4e34f565560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesse: 0.5
+  vitesse: 1
   vitesseRotation: 50
 --- !u!114 &1367500572
 MonoBehaviour:
@@ -7095,6 +7075,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1367500574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523064210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33721a957303acd4ea5c6567d4dd5f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ptsVie: 0
 --- !u!1 &1379166887
 GameObject:
   m_ObjectHideFlags: 0
@@ -9724,6 +9717,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1151410080}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5917978583770865241, guid: 3c1d1e1264049eb4a9a6a2c5efdd8de6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 49164836}
     - targetCorrespondingSourceObject: {fileID: 6038388215284919835, guid: 3c1d1e1264049eb4a9a6a2c5efdd8de6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 230570497}
@@ -9740,9 +9736,37 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 654279235967263420, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189355510881332839, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3477846
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189355510881332839, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_Size.z
+      value: 1.3345866
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189355510881332839, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_Center.y
+      value: 0.06398393
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189355510881332839, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_Center.z
+      value: 0.68039554
+      objectReference: {fileID: 0}
+    - target: {fileID: 2189355510881332839, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3980470330837601007, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
       propertyPath: m_TagString
       value: Eppee
+      objectReference: {fileID: 0}
+    - target: {fileID: 6257530916507432739, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6257530916507432739, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
       propertyPath: m_TagString
@@ -9800,6 +9824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7881166932387697251, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9141148116836146104, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
       propertyPath: m_Name
       value: Joueur
@@ -9823,6 +9851,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 330585546}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9141148116836146104, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1367500574}
     - targetCorrespondingSourceObject: {fileID: 9141148116836146104, guid: 1b7dd4f5e85298248b61e898604bed49, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1367500570}

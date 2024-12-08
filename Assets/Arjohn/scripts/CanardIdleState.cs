@@ -21,6 +21,9 @@ public class CanardIdleState : CanardBaseState
         if (canard.IsChase() == true)
         {
             //Debug.Log("suppose de chase");
+            // | |
+            // | | return new chasestate ne marche pas????????
+            // V V
             return new CanardChaseState();
         } 
         return this;
