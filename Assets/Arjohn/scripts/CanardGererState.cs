@@ -1,25 +1,26 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class CanardGererState : MonoBehaviour
 {
     // REFERENCES :
-    // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl
-    // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_
+    // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl (How to Program in Unity: State Machines Explained)
+    // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_ (FULL 3D ENEMY AI in 6 MINUTES! || Unity Tutorial)
+    // https://youtu.be/zNdGUUOohzE?si=2gZ30PdsSnO-n8Vl (Create a Simple Enemy AI in Unity: Player Detection and Chasing)
 
-    CanardBaseState currentState;
-    public CanardIdleState IdleState = new CanardIdleState();
-    public CanardAttackState AttackState = new CanardAttackState();
-    public CanardChaseState ChaseState = new CanardChaseState();
+    public CanardBaseState currentState;
+    public Joueur joueur;
 
-    public NavMeshAgent agent;
-    public Transform player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    private NavMeshAgent agent;
+    private Transform player;
+    public LayerMask whatIsWater, whatIsPlayer;
+    public float distance;
 
     // IDLE
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange;
+    public float walkPointRange = 2;
 
     // ATTAQUER
     public float timeBetweenAttacks;
@@ -27,11 +28,11 @@ public class CanardGererState : MonoBehaviour
 
     // STATES
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    //private bool playerInSightRange, playerInAttackRange;
 
     void Awake()
     {
-        player = GameObject.Find("PlayerObj").transform;
+        player = GameObject.Find("Joueur").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -39,7 +40,7 @@ public class CanardGererState : MonoBehaviour
     void Start()
     {
         // state debutant pour la machine a etat
-        currentState = IdleState;
+        currentState = new CanardIdleState();
         // "this" est une reference de la contexte (cet exact MonoBehavior script)
         currentState.EnterState(this);
     }
@@ -50,13 +51,35 @@ public class CanardGererState : MonoBehaviour
         // il va caller tous les logiques dans les fonctions Update() dans le state actuel
         currentState.UpdateState(this);
 
-        // chequer si le joueur est dans le vue de l'ennemi
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        // chequer si le joueur est assez proche pour l'attaquer
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
+        // chequer si le joueur est dans le vue de l'ennemi
+        distance = Vector3.Distance(agent.transform.position, player.transform.position);
+        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        //Debug.Log(playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer));
+        //Debug.Log(currentState);
+
+        // chequer si le joueur est assez proche pour l'attaquer
+        //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
     }
 
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Player")
+        {
+            Debug.Log("l'ennemi a touche/attaque le joueur");
+            StartCoroutine(PerdVie());
+        }
+    }
+
+    private IEnumerator PerdVie()
+    {
+        joueur.RetirerVie();
+        yield return new WaitForSeconds(3f);
+    }
+
+    /// <summary>
+    /// l'ennemi entre dans un state Idle
+    /// </summary>
     public void GoIdle()
     {
         if (!walkPointSet)
@@ -66,32 +89,45 @@ public class CanardGererState : MonoBehaviour
         else if (walkPointSet)
         {
             agent.SetDestination(walkPoint);
+
+            //Debug.Log(agent.SetDestination(walkPoint));
+
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            // si l'ennemi est dans sa destination
+            if (distanceToWalkPoint.magnitude < 0.5f || Mathf.Approximately(agent.velocity.sqrMagnitude, 0.0f))
+            {
+                walkPointSet = false;
+            }
         }
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        // si l'ennemi est dans sa destination
-        if (distanceToWalkPoint.magnitude < 1f)
-        {
-            walkPointSet = false;
-        }
-    }
-
-    public void GoChase()
-    {
-        agent.SetDestination(player.position);
     }
 
     /// <summary>
-    /// changer state
+    /// l'ennemi entre dans un state Chase
     /// </summary>
-    /// <param name="state">state de l'ennemi(IDLE, CHASE, ATTAQUE)</param>
-    public void SwitchState(CanardBaseState state)
+    public void GoChase()
     {
-        currentState = state;
-        state.EnterState(this);
+        Debug.Log("je te chasse!");
+        agent.SetDestination(player.transform.position);
+        //   Debug.Log(agent.SetDestination(player.transform.position));
     }
 
+    /// <summary>
+    /// l'ennemi entre dans un state Attaque
+    /// </summary>
+    public void GoAttack()
+    {
+        Debug.Log("je t'attaque!");
+        agent.SetDestination(player.transform.position);
+        // changer vitesse pour chasser le joueur plus vite, donne l'air comme un "dash".
+        // aussi attaquer dans un position de joueur qui etait la et non le position actuelle du joueur
+
+        //   Debug.Log(agent.SetDestination(player.transform.position));
+    }
+
+    /// <summary>
+    /// l'ennemi cherche un point aleatoire dans le bain
+    /// </summary>
     public void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -99,7 +135,7 @@ public class CanardGererState : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsWater))
         {
             walkPointSet = true;
         }
@@ -111,7 +147,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsIdle()
     {
-        if (!playerInSightRange && !playerInAttackRange)
+        //if (!playerInSightRange && !playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance > 1.25f)
         {
             return true;
         }
@@ -127,7 +171,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsChase()
     {
-        if (playerInSightRange && !playerInAttackRange)
+        //if (playerInSightRange && !playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance < 1.25f)
         {
             return true;
         }
@@ -143,7 +195,15 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsAttaque()
     {
-        if (playerInSightRange && playerInAttackRange)
+        //if (playerInSightRange && playerInAttackRange)
+        //{
+        //    return true;
+        //}
+        //else
+        //{
+        //    return false;
+        //}
+        if (distance < 0.5f)
         {
             return true;
         }

@@ -12,14 +12,21 @@ public class CanardIdleState : CanardBaseState
         
     }
 
-    public override void UpdateState(CanardGererState canard)
+    public override CanardBaseState UpdateState(CanardGererState canard)
     {
         canard.GoIdle();
 
+        // si l'ennemi 'vois' le canard, il va chasser.
+        // sinon, rester inactif
         if (canard.IsChase() == true)
         {
-            canard.SwitchState(canard.ChaseState);
-        }
+            //Debug.Log("suppose de chase");
+            // | |
+            // | | return new chasestate ne marche pas????????
+            // V V
+            return new CanardChaseState();
+        } 
+        return this;
     }
 
     public override void OnCollisionEnter(CanardGererState canard)
