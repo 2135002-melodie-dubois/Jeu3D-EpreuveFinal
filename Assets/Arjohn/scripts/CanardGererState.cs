@@ -28,7 +28,6 @@ public class CanardGererState : MonoBehaviour
 
     // STATES
     public float sightRange, attackRange;
-    //private bool playerInSightRange, playerInAttackRange;
 
     void Awake()
     {
@@ -39,6 +38,8 @@ public class CanardGererState : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        sightRange = 1f;
+        attackRange = .25f;
         // state debutant pour la machine a etat
         currentState = new CanardIdleState();
         // "this" est une reference de la contexte (cet exact MonoBehavior script)
@@ -49,13 +50,11 @@ public class CanardGererState : MonoBehaviour
     void Update()
     {
         // il va caller tous les logiques dans les fonctions Update() dans le state actuel
-        currentState.UpdateState(this);
+        currentState = currentState.UpdateState(this);
 
 
         // chequer si le joueur est dans le vue de l'ennemi
         distance = Vector3.Distance(agent.transform.position, player.transform.position);
-        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        //Debug.Log(playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer));
         //Debug.Log(currentState);
 
         // chequer si le joueur est assez proche pour l'attaquer
@@ -82,6 +81,7 @@ public class CanardGererState : MonoBehaviour
     /// </summary>
     public void GoIdle()
     {
+        Debug.Log("je suis idle!");
         if (!walkPointSet)
         {
             SearchWalkPoint();
@@ -147,14 +147,6 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsIdle()
     {
-        //if (!playerInSightRange && !playerInAttackRange)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
         if (distance > 1.25f)
         {
             return true;
@@ -171,14 +163,6 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsChase()
     {
-        //if (playerInSightRange && !playerInAttackRange)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
         if (distance < 1.25f)
         {
             return true;
@@ -195,14 +179,6 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsAttaque()
     {
-        //if (playerInSightRange && playerInAttackRange)
-        //{
-        //    return true;
-        //}
-        //else
-        //{
-        //    return false;
-        //}
         if (distance < 0.5f)
         {
             return true;
