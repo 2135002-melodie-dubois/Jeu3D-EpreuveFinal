@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -35,6 +37,7 @@ public class Menus : MonoBehaviour
     //Valeurs menu missions
     [SerializeField]
     private Mission[] missions;
+    private List<Coroutine> coroutinesMissions;
     [SerializeField]
     private TextMeshProUGUI[] ui_texte_missions;
 
@@ -80,6 +83,8 @@ public class Menus : MonoBehaviour
     public void DemmarerPartie()
     {
         //Lancer un message: Demarer Partie
+        demmarerMissions();
+        terminerMissions();
     }
 
     //Fonctions Du Menu Boutique
@@ -142,6 +147,23 @@ public class Menus : MonoBehaviour
         {
             pieces += misson.GetRecompense();
             misson.InstancierMission();
+        }
+    }
+
+    public void demmarerMissions()
+    {
+        coroutinesMissions = new List<Coroutine>();
+        foreach (var m in missions)
+        {
+            coroutinesMissions.Add(StartCoroutine(m.ExecuterMission()));
+        }
+        
+    }
+    public void terminerMissions()
+    {
+        foreach (var c in coroutinesMissions)
+        {
+            StopCoroutine(c);
         }
     }
 }

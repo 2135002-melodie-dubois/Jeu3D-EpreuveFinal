@@ -2874,6 +2874,7 @@ MonoBehaviour:
   ui_score: {fileID: 244629900}
   ui_meilleur_score: {fileID: 791021192}
   ui_compteur_pieces: {fileID: 240723082}
+  ui_texte_missions: []
 --- !u!1 &724222377
 GameObject:
   m_ObjectHideFlags: 0

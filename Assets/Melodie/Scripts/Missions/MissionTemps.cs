@@ -41,6 +41,6 @@ public class MissionTemps : MonoBehaviour, Mission
 
     public string TexteMission()
     {
-        return "Survivre" + butTempsSurvie + "secondes (" + meilleurScore + "/" + butTempsSurvie + ")";
+        return "Survivre" + butTempsSurvie + "secondes (" + meilleurScore + "/" + butTempsSurvie + "";
     }
 }

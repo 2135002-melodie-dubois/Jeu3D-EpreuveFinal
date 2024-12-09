@@ -8,4 +8,5 @@ public interface Mission
     void InstancierMission();
     bool EstComplete();
     int GetRecompense();
+    void terminerPartie();
 }
