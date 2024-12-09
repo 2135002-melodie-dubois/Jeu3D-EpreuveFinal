@@ -1,11 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class Menus : MonoBehaviour
 {
@@ -29,10 +25,6 @@ public class Menus : MonoBehaviour
 
     //Valeurs du UI de combat
     [SerializeField]
-    private TextMeshProUGUI ui_score;
-    [SerializeField]
-    private TextMeshProUGUI ui_meilleur_score;
-    [SerializeField]
     private TextMeshProUGUI ui_compteur_pieces;
 
     //Valeurs menu missions
@@ -45,7 +37,16 @@ public class Menus : MonoBehaviour
     //UnityEvents
     public UnityEvent<int> OnAmeliorerVitesse;
     public UnityEvent<int> OnAmeliorerVie;
-    private GenerateurEnnemi GenerateurEnnemi;
+    public GenerateurEnnemi generateurEnnemi;
+    [SerializeField]
+    private GameObject ennemi;
+    [SerializeField]
+    private Joueur joueur;
+    [SerializeField]
+    private ViesCanard joueurviesCanard;
+    private bool enCombat;
+    [SerializeField]
+    private CanvasGroup ui_normal;
 
 
 
@@ -56,30 +57,25 @@ public class Menus : MonoBehaviour
         pieces = 0;
         score = 0;
         meilleur_score = 0;
+        generateurEnnemi = new GenerateurEnnemi();
+        enCombat = false;
 
-        UpdateScore();
-        UpdateMeilleurScore();
         UpdatePieces();
     }
 
-    public void AjouterScore(int valeur)
+    private void Update()
     {
-        score += valeur;
-        if (score > meilleur_score)
-            meilleur_score = score;
-        UpdateScore();
-        UpdateMeilleurScore();
+        joueurviesCanard.AfficherCoeurs((int)joueur.ptsVie);
+        if (enCombat)
+        {
+            ui_normal.alpha = 0;
+        }
+        else
+        {
+            ui_normal.alpha = 1;
+        }
     }
 
-    void UpdateScore()
-    {
-        ui_score.text = "Score: " + score.ToString();
-    }
-
-    public void UpdateMeilleurScore()
-    {
-        ui_meilleur_score.text = "Meilleur Score: " + meilleur_score.ToString();
-    }
 
     public void UpdatePieces()
     {
@@ -88,9 +84,17 @@ public class Menus : MonoBehaviour
 
     public void DemmarerPartie()
     {
-        //Lancer un message: Demarer Partie
+        enCombat = true;
+        generateurEnnemi.Demmarer(ennemi);
         demmarerMissions();
+        while (joueur.ptsVie > 0) { }
+        terminerPartie();
+    }
+
+    public void terminerPartie()
+    {
         terminerMissions();
+        enCombat = false;
     }
 
     //Fonctions Du Menu Boutique
@@ -112,7 +116,8 @@ public class Menus : MonoBehaviour
             {
                 NiveauVie++;
                 pieces -= 50;
-                OnAmeliorerVie?.Invoke(1);
+                //Ajouter au script joueur
+                //joueur.AjouterVie();
                 UpdatePieces();
             }
         }
@@ -125,7 +130,8 @@ public class Menus : MonoBehaviour
             {
                 NiveauVitesse++;
                 pieces -= 50;
-                OnAmeliorerVie?.Invoke(1);
+                //Ajouter au script Joueur
+                //joueur.AjouterVitesse();
                 UpdatePieces();
             }
         }

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d683f6b64e8eaf4c8e7239b5d1d2645, type: 3}
   m_Name: EnnemiRapide
   m_EditorClassIdentifier: 
-  vitesse: 0
-  tempsChasse: 0
+  vitesse: 1.5
+  tempsChasse: 3

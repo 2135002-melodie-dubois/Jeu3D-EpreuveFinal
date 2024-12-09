@@ -14,20 +14,13 @@ public class MissionTemps : MonoBehaviour, Mission
 
     public IEnumerator ExecuterMission()
     {
-        float tempsDepuisDebut = 0.0f;
-
-        tempsDepuisDebut += Time.deltaTime;
-        if (tempsDepuisDebut >= 1)
+        tempsSurvie++;
+        if (tempsSurvie > meilleurScore)
         {
-            tempsDepuisDebut -= 1;
-            tempsSurvie++;
-            if (tempsSurvie > meilleurScore)
-            {
-                meilleurScore = tempsSurvie;
-            }
+            meilleurScore = tempsSurvie;
         }
-        
-        yield return null;
+
+        yield return new WaitForSeconds(1);
     }
 
     public int GetRecompense()

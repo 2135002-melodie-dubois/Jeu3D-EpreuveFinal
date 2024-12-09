@@ -4,25 +4,22 @@ using UnityEngine;
 public class GenerateurEnnemi : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private GameObject ennemi_objet;
+    private Coroutine coroutine;
 
-    // Update is called once per frame
-    void Update()
+    public void Demmarer(GameObject ennemi) 
     {
-        
-    }
-
-    private void Demmarer() 
-    {
-        Coroutine coroutine = StartCoroutine(JeuCoroutine());
+        ennemi_objet = ennemi;
+        coroutine = StartCoroutine(JeuCoroutine());
     }
     public IEnumerator JeuCoroutine()
     {
-        Ennemi ennemi = new Ennemi();
-        yield return null;
+        GameObject ennemi = Instantiate(ennemi_objet);
+
+        yield return new WaitForSeconds(5);
     }
-    private void Terminer() { }
+    public void Terminer() 
+    {
+        StopCoroutine(coroutine);
+    }
 }

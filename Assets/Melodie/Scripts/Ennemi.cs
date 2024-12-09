@@ -12,7 +12,6 @@ public class Ennemi : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = type_Ennemi.vitesse;
     }
 
     // Update is called once per frame
