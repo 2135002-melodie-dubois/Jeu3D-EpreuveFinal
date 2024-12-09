@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 public class GenerateurEnnemi : MonoBehaviour
@@ -15,6 +15,14 @@ public class GenerateurEnnemi : MonoBehaviour
         
     }
 
-    private void Demmarer() { }
+    private void Demmarer() 
+    {
+        Coroutine coroutine = StartCoroutine(JeuCoroutine());
+    }
+    public IEnumerator JeuCoroutine()
+    {
+        Ennemi ennemi = new Ennemi();
+        yield return null;
+    }
     private void Terminer() { }
 }

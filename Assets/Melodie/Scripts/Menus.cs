@@ -45,6 +45,7 @@ public class Menus : MonoBehaviour
     //UnityEvents
     public UnityEvent<int> OnAmeliorerVitesse;
     public UnityEvent<int> OnAmeliorerVie;
+    private GenerateurEnnemi GenerateurEnnemi;
 
 
 
