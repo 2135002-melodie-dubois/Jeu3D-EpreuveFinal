@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Menus : MonoBehaviour
@@ -21,10 +22,10 @@ public class Menus : MonoBehaviour
     //Valeurs du menu boutique
     [SerializeField]
     private int AmeliorationVieMax;
-    [SerializeField]
-    private EpeeObjet TypeEppeeAmelioree;
     private int NiveauVie;
-    private bool EppeeAchetee;
+    private int NiveauVitesse;
+    [SerializeField]
+    private int AmeliorationVitesseMax;
 
     //Valeurs du UI de combat
     [SerializeField]
@@ -41,12 +42,16 @@ public class Menus : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] ui_texte_missions;
 
+    //UnityEvents
+    public UnityEvent<int> OnAmeliorerVitesse;
+    public UnityEvent<int> OnAmeliorerVie;
+
 
 
     private void Start()
     {
         NiveauVie = 0;
-        EppeeAchetee = false;
+        NiveauVitesse = 0;
         pieces = 0;
         score = 0;
         meilleur_score = 0;
@@ -98,30 +103,30 @@ public class Menus : MonoBehaviour
         menuBoutique.FermerMenu();
     }
 
-    
-    public void AcheterEppee()
-    {
-        if (!EppeeAchetee)
-        {
-            //Si Assez Pieces
-                EppeeAchetee = true;
-                //Retirer Pieces
-                //Lancer un message: Ameliorer l'eppee
-                UpdatePieces();
-        }
-
-    }
-
     public void AcheterVie()
     {
         if (NiveauVie < AmeliorationVieMax)
         {
-            //Si assez Pieces
+            if (pieces >= 50)
+            {
                 NiveauVie++;
-                //Retirer Pieces
-                //Lancer un message: Augmenter Vie Max
+                pieces -= 50;
+                OnAmeliorerVie?.Invoke(1);
                 UpdatePieces();
-            
+            }
+        }
+    }
+    public void AcheterVitesse()
+    {
+        if (NiveauVitesse < AmeliorationVitesseMax)
+        {
+            if (pieces >= 50)
+            {
+                NiveauVitesse++;
+                pieces -= 50;
+                OnAmeliorerVie?.Invoke(1);
+                UpdatePieces();
+            }
         }
     }
 

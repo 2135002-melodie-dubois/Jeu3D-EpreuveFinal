@@ -7,6 +7,6 @@ public class EnnemiObjet : ScriptableObject
     public float vitesse;
 
     [SerializeField]
-    public int points;
+    public int tempsChasse;
     
 }
