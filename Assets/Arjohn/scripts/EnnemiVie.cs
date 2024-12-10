@@ -1,14 +1,13 @@
-using System.Collections;
 using UnityEngine;
 
-public class Joueur : MonoBehaviour
+public class EnnemiVie : MonoBehaviour
 {
     public float ptsVie;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ptsVie = 10;
+        ptsVie = 5;
     }
 
     // Update is called once per frame

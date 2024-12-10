@@ -8,6 +8,7 @@ public class CanardGererState : MonoBehaviour
     // https://youtu.be/Vt8aZDPzRjI?si=vky1X70Ao43ZDoHl (How to Program in Unity: State Machines Explained)
     // https://youtu.be/UjkSFoLxesw?si=jTUd7VaeAo0Ox9G_ (FULL 3D ENEMY AI in 6 MINUTES! || Unity Tutorial)
     // https://youtu.be/zNdGUUOohzE?si=2gZ30PdsSnO-n8Vl (Create a Simple Enemy AI in Unity: Player Detection and Chasing)
+    // https://youtu.be/Cmx76-Q11tM?si=RLWWz6wH7TsgVlYB (Countdown Timers In Unity | Coroutines Tutorial 2024)
 
     public CanardBaseState currentState;
     public Joueur joueur;
@@ -138,7 +139,7 @@ public class CanardGererState : MonoBehaviour
     {
         if (collider.tag == "Player")
         {
-            Debug.Log("l'ennemi a touche le joueur!");
+            //Debug.Log("l'ennemi a touche le joueur!");
             StartCoroutine(PerdVie());
         }
     }
