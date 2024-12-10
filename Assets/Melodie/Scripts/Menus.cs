@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Menus : MonoBehaviour
 {
@@ -21,16 +18,12 @@ public class Menus : MonoBehaviour
     //Valeurs du menu boutique
     [SerializeField]
     private int AmeliorationVieMax;
-    [SerializeField]
-    private EpeeObjet TypeEppeeAmelioree;
     private int NiveauVie;
-    private bool EppeeAchetee;
+    private int NiveauVitesse;
+    [SerializeField]
+    private int AmeliorationVitesseMax;
 
     //Valeurs du UI de combat
-    [SerializeField]
-    private TextMeshProUGUI ui_score;
-    [SerializeField]
-    private TextMeshProUGUI ui_meilleur_score;
     [SerializeField]
     private TextMeshProUGUI ui_compteur_pieces;
 
@@ -41,39 +34,48 @@ public class Menus : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] ui_texte_missions;
 
+    //UnityEvents
+    public UnityEvent<int> OnAmeliorerVitesse;
+    public UnityEvent<int> OnAmeliorerVie;
+    public GenerateurEnnemi generateurEnnemi;
+    [SerializeField]
+    private GameObject ennemi;
+    [SerializeField]
+    private Joueur joueur;
+    [SerializeField]
+    private ViesCanard joueurviesCanard;
+    private bool enCombat;
+    [SerializeField]
+    private CanvasGroup ui_normal;
+
 
 
     private void Start()
     {
         NiveauVie = 0;
-        EppeeAchetee = false;
+        NiveauVitesse = 0;
         pieces = 0;
         score = 0;
         meilleur_score = 0;
+        generateurEnnemi = new GenerateurEnnemi();
+        enCombat = false;
 
-        UpdateScore();
-        UpdateMeilleurScore();
         UpdatePieces();
     }
 
-    public void AjouterScore(int valeur)
+    private void Update()
     {
-        score += valeur;
-        if (score > meilleur_score)
-            meilleur_score = score;
-        UpdateScore();
-        UpdateMeilleurScore();
+        joueurviesCanard.AfficherCoeurs((int)joueur.ptsVie);
+        if (enCombat)
+        {
+            ui_normal.alpha = 0;
+        }
+        else
+        {
+            ui_normal.alpha = 1;
+        }
     }
 
-    void UpdateScore()
-    {
-        ui_score.text = "Score: " + score.ToString();
-    }
-
-    public void UpdateMeilleurScore()
-    {
-        ui_meilleur_score.text = "Meilleur Score: " + meilleur_score.ToString();
-    }
 
     public void UpdatePieces()
     {
@@ -82,9 +84,17 @@ public class Menus : MonoBehaviour
 
     public void DemmarerPartie()
     {
-        //Lancer un message: Demarer Partie
+        enCombat = true;
+        generateurEnnemi.Demmarer(ennemi);
         demmarerMissions();
+        while (joueur.ptsVie > 0) { }
+        terminerPartie();
+    }
+
+    public void terminerPartie()
+    {
         terminerMissions();
+        enCombat = false;
     }
 
     //Fonctions Du Menu Boutique
@@ -98,30 +108,32 @@ public class Menus : MonoBehaviour
         menuBoutique.FermerMenu();
     }
 
-    
-    public void AcheterEppee()
-    {
-        if (!EppeeAchetee)
-        {
-            //Si Assez Pieces
-                EppeeAchetee = true;
-                //Retirer Pieces
-                //Lancer un message: Ameliorer l'eppee
-                UpdatePieces();
-        }
-
-    }
-
     public void AcheterVie()
     {
         if (NiveauVie < AmeliorationVieMax)
         {
-            //Si assez Pieces
+            if (pieces >= 50)
+            {
                 NiveauVie++;
-                //Retirer Pieces
-                //Lancer un message: Augmenter Vie Max
+                pieces -= 50;
+                //Ajouter au script joueur
+                //joueur.AjouterVie();
                 UpdatePieces();
-            
+            }
+        }
+    }
+    public void AcheterVitesse()
+    {
+        if (NiveauVitesse < AmeliorationVitesseMax)
+        {
+            if (pieces >= 50)
+            {
+                NiveauVitesse++;
+                pieces -= 50;
+                //Ajouter au script Joueur
+                //joueur.AjouterVitesse();
+                UpdatePieces();
+            }
         }
     }
 

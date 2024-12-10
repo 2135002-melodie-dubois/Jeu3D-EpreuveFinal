@@ -14,10 +14,13 @@ public class MissionTemps : MonoBehaviour, Mission
 
     public IEnumerator ExecuterMission()
     {
-        //Attendre 1 seconde
-        //tempsSurvie++
-        //si tempsSurvie > meilleurScore, meilleurScore = tempsSurvie
-        yield return null;
+        tempsSurvie++;
+        if (tempsSurvie > meilleurScore)
+        {
+            meilleurScore = tempsSurvie;
+        }
+
+        yield return new WaitForSeconds(1);
     }
 
     public int GetRecompense()
