@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,11 +19,12 @@ public class CanardGererState : MonoBehaviour
     // IDLE
     public Vector3 walkPoint;
     bool walkPointSet;
-    public float walkPointRange = 2;
+    public float walkPointRange;
 
     // ATTAQUER
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    //public float timeBetweenAttacks;
+    //bool alreadyAttacked;
+    private float vitesseDash;
 
     // STATES
     public float sightRange, attackRange;
@@ -40,6 +40,8 @@ public class CanardGererState : MonoBehaviour
     {
         sightRange = 1f;
         attackRange = .25f;
+        walkPointRange = 2f;
+        vitesseDash = 5;
         // state debutant pour la machine a etat
         currentState = new CanardIdleState();
         // "this" est une reference de la contexte (cet exact MonoBehavior script)
@@ -52,28 +54,12 @@ public class CanardGererState : MonoBehaviour
         // il va caller tous les logiques dans les fonctions Update() dans le state actuel
         currentState = currentState.UpdateState(this);
 
-
         // chequer si le joueur est dans le vue de l'ennemi
         distance = Vector3.Distance(agent.transform.position, player.transform.position);
         //Debug.Log(currentState);
 
         // chequer si le joueur est assez proche pour l'attaquer
         //playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-    }
-
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.tag == "Player")
-        {
-            Debug.Log("l'ennemi a touche/attaque le joueur");
-            StartCoroutine(PerdVie());
-        }
-    }
-
-    private IEnumerator PerdVie()
-    {
-        joueur.RetirerVie();
-        yield return new WaitForSeconds(3f);
     }
 
     /// <summary>
@@ -118,7 +104,7 @@ public class CanardGererState : MonoBehaviour
     public void GoAttack()
     {
         Debug.Log("je t'attaque!");
-        agent.SetDestination(player.transform.position);
+        agent.SetDestination(player.position * vitesseDash);
         // changer vitesse pour chasser le joueur plus vite, donne l'air comme un "dash".
         // aussi attaquer dans un position de joueur qui etait la et non le position actuelle du joueur
 
@@ -147,7 +133,7 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsIdle()
     {
-        if (distance > 1.25f)
+        if (distance > sightRange)
         {
             return true;
         }
@@ -163,7 +149,7 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsChase()
     {
-        if (distance < 1.25f)
+        if (distance < sightRange && distance > attackRange)
         {
             return true;
         }
@@ -179,7 +165,7 @@ public class CanardGererState : MonoBehaviour
     /// <returns></returns>
     public bool IsAttaque()
     {
-        if (distance < 0.5f)
+        if (distance < attackRange)
         {
             return true;
         }
