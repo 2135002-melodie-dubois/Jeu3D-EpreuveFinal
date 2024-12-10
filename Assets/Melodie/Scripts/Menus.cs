@@ -69,7 +69,7 @@ public class Menus : MonoBehaviour
         if (enCombat)
         {
             ui_normal.alpha = 0;
-        }
+        }  
         else
         {
             ui_normal.alpha = 1;

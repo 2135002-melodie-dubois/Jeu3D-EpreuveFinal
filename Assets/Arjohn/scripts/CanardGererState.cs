@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ public class CanardGererState : MonoBehaviour
 
     public CanardBaseState currentState;
     public Joueur joueur;
+    private BoxCollider boxCollider;
 
     private NavMeshAgent agent;
     private Transform player;
@@ -38,6 +40,7 @@ public class CanardGererState : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        boxCollider = GetComponent<BoxCollider>();
         sightRange = 1f;
         attackRange = .25f;
         walkPointRange = 2f;
@@ -67,7 +70,7 @@ public class CanardGererState : MonoBehaviour
     /// </summary>
     public void GoIdle()
     {
-        Debug.Log("je suis idle!");
+        //Debug.Log("je suis idle!");
         if (!walkPointSet)
         {
             SearchWalkPoint();
@@ -93,7 +96,7 @@ public class CanardGererState : MonoBehaviour
     /// </summary>
     public void GoChase()
     {
-        Debug.Log("je te chasse!");
+        //Debug.Log("je te chasse!");
         agent.SetDestination(player.transform.position);
         //   Debug.Log(agent.SetDestination(player.transform.position));
     }
@@ -103,7 +106,7 @@ public class CanardGererState : MonoBehaviour
     /// </summary>
     public void GoAttack()
     {
-        Debug.Log("je t'attaque!");
+        //Debug.Log("je t'attaque!");
         agent.SetDestination(player.position * vitesseDash);
         // changer vitesse pour chasser le joueur plus vite, donne l'air comme un "dash".
         // aussi attaquer dans un position de joueur qui etait la et non le position actuelle du joueur
@@ -112,7 +115,7 @@ public class CanardGererState : MonoBehaviour
     }
 
     /// <summary>
-    /// l'ennemi cherche un point aleatoire dans le bain
+    /// IDLE l'ennemi cherche un point aleatoire dans le bain
     /// </summary>
     public void SearchWalkPoint()
     {
@@ -125,6 +128,37 @@ public class CanardGererState : MonoBehaviour
         {
             walkPointSet = true;
         }
+    }
+
+    /// <summary>
+    /// ATTACK si l'ennemi a touche le joueur, le joueur perd de vie
+    /// </summary>
+    /// <param name="collider"></param>
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.tag == "Player")
+        {
+            Debug.Log("l'ennemi a touche le joueur!");
+            StartCoroutine(PerdVie());
+        }
+    }
+
+    private IEnumerator PerdVie()
+    {
+        joueur.RetirerVie();
+        DisableAttack();
+        yield return new WaitForSeconds(3);
+        EnableAttack();
+    }
+
+    void EnableAttack()
+    {
+        boxCollider.enabled = true;
+    }
+
+    void DisableAttack()
+    {
+        boxCollider.enabled = false;
     }
 
     /// <summary>

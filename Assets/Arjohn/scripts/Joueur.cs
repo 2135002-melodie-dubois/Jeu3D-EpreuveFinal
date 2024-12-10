@@ -24,20 +24,20 @@ public class Joueur : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider collider)
-    {
-        if (collider.tag == "Ennemi")
-        {
-            Debug.Log("joueur a ete attaque par un ennemi!");
-            StartCoroutine(PerdVie());
-        }
-    }
+    //void OnTriggerEnter(Collider collider)
+    //{
+    //    if (collider.tag == "Ennemi")
+    //    {
+    //        Debug.Log("joueur a ete attaque par un ennemi!");
+    //        StartCoroutine(PerdVie());
+    //    }
+    //}
 
-    private IEnumerator PerdVie()
-    {
-        RetirerVie();
-        yield return new WaitForSeconds(3);
-    }
+    //private IEnumerator PerdVie()
+    //{
+    //    RetirerVie();
+    //    yield return new WaitForSeconds(3);
+    //}
 
     /// <summary>
     /// supprime de vie du joueur
