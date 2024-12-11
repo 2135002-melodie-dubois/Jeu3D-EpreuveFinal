@@ -21,5 +21,9 @@ public class GenerateurEnnemi : MonoBehaviour
     public void Terminer() 
     {
         StopCoroutine(coroutine);
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }
