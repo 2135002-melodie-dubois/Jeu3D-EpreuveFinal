@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class CanardGererState : MonoBehaviour
 {
@@ -19,14 +20,15 @@ public class CanardGererState : MonoBehaviour
     public LayerMask whatIsWater, whatIsPlayer;
     public float distance;
 
+    // evenement quand on detruit l'ennemi
+    public UnityEvent<CanardGererState> OnDestEnnemi;
+
     // IDLE
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
     // ATTAQUER
-    //public float timeBetweenAttacks;
-    //bool alreadyAttacked;
     private float vitesseDash;
 
     // STATES
@@ -208,5 +210,10 @@ public class CanardGererState : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public void OnDestroy()
+    {
+        OnDestEnnemi?.Invoke(this);
     }
 }

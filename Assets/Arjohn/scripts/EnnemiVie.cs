@@ -15,7 +15,7 @@ public class EnnemiVie : MonoBehaviour
     {
         if (ptsVie <= 0)
         {
-            //Destroy
+            Destroy(gameObject);
         }
     }
 
