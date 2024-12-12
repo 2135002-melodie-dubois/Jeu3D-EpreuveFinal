@@ -31,6 +31,12 @@ public class Epee : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Coroutine pour eviter un mort vit de notre ennemi
+    /// le collider de notre epee se desactive pendant une
+    /// seconde apres de toucher l'ennemi
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator PerdVie()
     {
         ennemiVie.RetirerVie();

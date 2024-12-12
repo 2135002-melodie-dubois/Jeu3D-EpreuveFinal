@@ -33,7 +33,7 @@ public class EnnemiVie : MonoBehaviour
     }
 
     /// <summary>
-    /// supprime de vie du joueur
+    /// supprime de vie de l'ennemi
     /// </summary>
     public void RetirerVie()
     {
