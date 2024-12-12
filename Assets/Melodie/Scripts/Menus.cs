@@ -34,9 +34,7 @@ public class Menus : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI[] ui_texte_missions;
 
-    //UnityEvents
-    public UnityEvent<int> OnAmeliorerVitesse;
-    public UnityEvent<int> OnAmeliorerVie;
+    //Autres elements
     public GenerateurEnnemi generateurEnnemi;
     [SerializeField]
     private GameObject ennemi;
@@ -59,6 +57,16 @@ public class Menus : MonoBehaviour
         meilleur_score = 0;
         generateurEnnemi = new GenerateurEnnemi();
         enCombat = false;
+        missions = new Mission[3];
+        missions[0] = new MissionTemps();
+        missions[1] = new MissionEnnemi();
+        missions[2] = new MissionEnnemiTotal();
+
+        foreach (var m in missions)
+        {
+            m.InstancierMission();
+        }
+
 
         UpdatePieces();
     }
@@ -94,6 +102,7 @@ public class Menus : MonoBehaviour
     public void terminerPartie()
     {
         terminerMissions();
+        generateurEnnemi.Terminer();
         enCombat = false;
     }
 

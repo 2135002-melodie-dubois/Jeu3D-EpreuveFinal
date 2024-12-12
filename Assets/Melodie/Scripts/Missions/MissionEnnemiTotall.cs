@@ -14,7 +14,7 @@ public class MissionEnnemiTotal : MonoBehaviour, Mission
 
     public IEnumerator ExecuterMission()
     {
-        //a chaque ennemi tué: ennemisDetriuts++
+        //a chaque ennemi tué: ennemisDetruits++;
         yield return null;
     }
 
@@ -39,5 +39,14 @@ public class MissionEnnemiTotal : MonoBehaviour, Mission
     public string TexteMission()
     {
         return "Détruire un nombre total d'ennemis (" + ennemisDetruits + "/" + butEnnemiDetruits + ")";
+    }
+
+    //
+    // codes faites par Ariel John Fajardo
+    //
+
+    public void IncrementerPts()
+    {
+        ennemisDetruits++;
     }
 }

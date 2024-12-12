@@ -3,14 +3,21 @@ using UnityEngine;
 
 public class Epee : MonoBehaviour
 {
-    public EnnemiVie ennemiVie;
+    private EnnemiVie ennemiVie;
     private BoxCollider boxCollider;
 
     void Start()
     {
+        ennemiVie = GameObject.FindGameObjectWithTag("Ennemi").GetComponent<EnnemiVie>();
         boxCollider = GetComponent<BoxCollider>();
     }
-    
+
+    void Update()
+    {
+        //j'ecrit ca pour les ennemis qui va etre creer par le generateur
+        ennemiVie = GameObject.FindGameObjectWithTag("Ennemi").GetComponent<EnnemiVie>();
+    }
+
     /// <summary>
     /// si on touche l'ennemi avec l'epee, on diminue sa vie
     /// </summary>

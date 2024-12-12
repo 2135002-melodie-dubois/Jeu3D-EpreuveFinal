@@ -13,6 +13,7 @@ public class CanardGererState : MonoBehaviour
 
     public CanardBaseState currentState;
     public Joueur joueur;
+    public EnnemiVie ennemiVie;
     private BoxCollider boxCollider;
 
     private NavMeshAgent agent;
@@ -43,6 +44,7 @@ public class CanardGererState : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        joueur = GameObject.Find("Joueur").GetComponent<Joueur>();
         boxCollider = GetComponent<BoxCollider>();
         sightRange = 1f;
         attackRange = .25f;
@@ -142,11 +144,15 @@ public class CanardGererState : MonoBehaviour
         if (collider.tag == "Player")
         {
             //Debug.Log("l'ennemi a touche le joueur!");
-            StartCoroutine(PerdVie());
+            StartCoroutine(PrendVie());
         }
     }
 
-    private IEnumerator PerdVie()
+    /// <summary>
+    /// Retirer un point de vie du joueur
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator PrendVie()
     {
         joueur.RetirerVie();
         DisableAttack();
@@ -214,6 +220,6 @@ public class CanardGererState : MonoBehaviour
 
     public void OnDestroy()
     {
-        OnDestEnnemi?.Invoke(this);
+        // spawner un nouveau ennemi
     }
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &9167384241095729442
+--- !u!1001 &452273791936135426
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_Name
-      value: BateauEnnemi Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      value: BateauEnnemi
       objectReference: {fileID: 0}
     - target: {fileID: 5261711953804427787, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_IsTrigger
@@ -25,20 +21,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_Acceleration
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_AngularSpeed
       value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 6897439539484392442, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-      propertyPath: m_WalkableMask
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8313748741407605620, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       propertyPath: m_LocalPosition.x
@@ -80,39 +68,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8438817980901580085, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1885795780860736554, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 3403884999981043478}
+      insertIndex: -1
+      addedObject: {fileID: 359948466822142907}
     - targetCorrespondingSourceObject: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9124234193486527406}
+      addedObject: {fileID: 8765613184430462415}
+    - targetCorrespondingSourceObject: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3612144165642621063}
   m_SourcePrefab: {fileID: 100100000, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
---- !u!1 &7829005524637227437 stripped
+--- !u!1 &1574550060665305485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1413884464879433871, guid: 3d8b287afe558234ab72fe31ddf53b10, type: 3}
-  m_PrefabInstance: {fileID: 9167384241095729442}
+  m_PrefabInstance: {fileID: 452273791936135426}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3403884999981043478
+--- !u!114 &359948466822142907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7829005524637227437}
+  m_GameObject: {fileID: 1574550060665305485}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d33e2bc8748243439506fec71e7dd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   joueur: {fileID: 0}
+  ennemiVie: {fileID: 3612144165642621063}
   whatIsWater:
     serializedVersion: 2
     m_Bits: 16
@@ -120,20 +109,63 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   distance: 0
+  OnDestEnnemi:
+    m_PersistentCalls:
+      m_Calls: []
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 2.5
   sightRange: 1
   attackRange: 0.25
---- !u!114 &9124234193486527406
+--- !u!114 &8765613184430462415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7829005524637227437}
+  m_GameObject: {fileID: 1574550060665305485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 685fcc0638bb2d64d989117712afbf7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type_Ennemi: {fileID: 0}
+--- !u!114 &3612144165642621063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574550060665305485}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a16cc12202d97124c99152d2d0ab1cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ptsVie: 0
+  ptsVie: 1
+  ennemiMort:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3612144165642621063}
+        m_TargetAssemblyTypeName: EnnemiVie, Assembly-CSharp
+        m_MethodName: TestMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3612144165642621063}
+        m_TargetAssemblyTypeName: EnnemiVie, Assembly-CSharp
+        m_MethodName: TestMethod
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
