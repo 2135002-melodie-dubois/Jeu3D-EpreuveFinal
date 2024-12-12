@@ -37,7 +37,7 @@ public class Menus : MonoBehaviour
     //Autres elements
     public GenerateurEnnemi generateurEnnemi;
     [SerializeField]
-    private GameObject ennemi;
+    private Ennemi ennemi;
     [SerializeField]
     private Joueur joueur;
     [SerializeField]
