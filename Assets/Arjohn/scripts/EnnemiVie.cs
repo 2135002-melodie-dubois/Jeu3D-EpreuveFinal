@@ -7,6 +7,7 @@ public class EnnemiVie : MonoBehaviour
     // https://youtu.be/djW7g6Bnyrc?si=N559-g3AW0wFozDu (UnityEvents Explained in 4 Minutes)
 
     public float ptsVie;
+    public float multiplieMesMinions;
 
     public UnityEvent ennemiMort;
 
@@ -15,6 +16,7 @@ public class EnnemiVie : MonoBehaviour
     {
         ennemiMort.AddListener(GameObject.FindGameObjectWithTag("EnnemiPoint").GetComponent<GenerrateurEnnemiArj>().CreerBateau);
         ptsVie = 5;
+        multiplieMesMinions = 2;
     }
 
     // Update is called once per frame
@@ -22,7 +24,10 @@ public class EnnemiVie : MonoBehaviour
     {
         if (ptsVie <= 0)
         {
-            ennemiMort.Invoke();
+            for (int i = 0; i < multiplieMesMinions; i++)
+            {
+                ennemiMort.Invoke();
+            }
             Destroy(gameObject);
         }
     }

@@ -16,7 +16,8 @@ public class Joueur : MonoBehaviour
     {
         if (ptsVie <= 0)
         {
-            //Destroy
+            Destroy(gameObject);
+            Debug.Log("T'as perdu le jeu!");
         }
     }
 
