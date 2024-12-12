@@ -8677,7 +8677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3612144165642621063, guid: 984d84ace219d2149860446123c2362a, type: 3}
       propertyPath: ennemiMort.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3612144165642621063, guid: 984d84ace219d2149860446123c2362a, type: 3}
       propertyPath: ennemiMort.m_PersistentCalls.m_Calls.Array.data[0].m_Target
